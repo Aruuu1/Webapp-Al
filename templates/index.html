@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Mahasiswa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .full-screen-card {
+            min-height: 100vh;
+        }
+        .hidden {
+            visibility: hidden;
+            position: absolute;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="full-screen-card d-flex align-items-center">
+        <div class="container">
+            <h1 class="text-center fw-bold mb-4">Dashboard Mahasiswa</h1>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="card shadow">
+                        <div class="row g-0">
+                            <!-- Sidebar -->
+                            <div class="col-md-2 bg-primary text-black p-3">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item mb-3">
+                                        <button class="nav-link text-light btn btn-info w-100" onclick="showPage('dataDiri')">DATA DIRI</button>
+                                    </li>
+                                    <li class="nav-item mb-3">
+                                        <button class="nav-link text-light btn btn-info w-100" onclick="showPage('krs')">KRS</button>
+                                    </li>
+                                    <li class="nav-item mb-3">
+                                        <button class="nav-link text-light btn btn-info w-100" onclick="showPage('daftarNilai')">DAFTAR NILAI</button>
+                                    </li>
+                                    <li class="nav-item mb-3">
+                                        <button class="nav-link text-light btn btn-info w-100" onclick="showPage('laporanNilai')">LAPORAN NILAI</button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="nav-link text-light btn btn-info w-100" onclick="showPage('grafikIpk')">GRAFIK IPK</button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Main Content -->
+                            <div class="col-md-10 p-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div id="dataDiri" class="page">
+                                            <h3>Data Diri</h3>
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><strong>Nama:</strong> {{nama}} </li>
+                                                <li class="list-group-item"><strong>NIM:</strong> {{nim}} </li>
+                                                <li class="list-group-item"><strong>Jurusan:</strong> {{jurusan}} </li>
+                                                <li class="list-group-item"><strong>Email:</strong> {{email}} </li>
+                                            </ul>
+                                        </div>
+                                        <div id="krs" class="page hidden">
+                                            <h3>Kartu Rencana Studi (KRS)</h3>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Kode</th>
+                                                        <th>Mata Kuliah</th>
+                                                        <th>SKS</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{ kode_matakuliah }}</td>
+                                                        <td>{{ matakuliah }}</td>
+                                                        <td>{{ sks }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="daftarNilai" class="page hidden">
+                                            <h3>Daftar Nilai</h3>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Mata Kuliah</th>
+                                                        <th>SKS</th>
+                                                        <th>Nilai</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{ matakuliah }}</td>
+                                                        <td>{{ sks }}</td>
+                                                        <td>{{ nilai }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="laporanNilai" class="page hidden">
+                                            <h3>Laporan Nilai</h3>
+                                            <ul>
+                                                <li>IPK: {{ipk}}</li>
+                                                <li>Total SKS: {{sks}}</li>
+                                                <li>Status: Aktif</li>
+                                            </ul>
+                                        </div>
+                                        <div id="grafikIpk" class="page hidden">
+                                            <h3>Grafik IPK</h3>
+                                            <p>Data IPK per semester:</p>
+                                            <canvas id="chartIpk"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                if (page.id === pageId) {
+                    page.classList.remove('hidden');
+                } else {
+                    page.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Tambahkan logika untuk membuat grafik IPK
+    </script>
+</body>
+</html>
